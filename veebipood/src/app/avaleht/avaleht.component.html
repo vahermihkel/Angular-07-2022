@@ -1,1 +1,16 @@
 <p>avaleht works!</p>
+
+<div *ngIf="kasSisestatud === false">
+  <button *ngIf="kogus > 0" (click)="tagasiNulli()">Tagasi nulli</button> <br>
+  <button (click)="v2hendaKogust()">-</button>
+  <div>{{ kogus }}</div>
+  <button (click)="suurendaKogust()">+</button>
+  <div>{{ s6num }}</div>
+</div>
+
+<button (click)="sisesta()">SISESTA</button>
+<div *ngIf="kasSisestatud === true">KOGUS SISESTATUD!</div>
+
+<!-- console.log -->
+<!-- ngIf -->
+<!-- boolean ja vastandväärtus -->
