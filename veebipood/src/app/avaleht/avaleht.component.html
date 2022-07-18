@@ -1,5 +1,6 @@
 <p>avaleht works!</p>
 
+<!-- ngIf - kas näitab või ei näita vastavalt avaldisele kogu blokki -->
 <div *ngIf="kasSisestatud === false">
   <button *ngIf="kogus > 0" (click)="tagasiNulli()">Tagasi nulli</button> <br>
   <button (click)="v2hendaKogust()">-</button>

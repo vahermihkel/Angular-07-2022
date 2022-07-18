@@ -1,4 +1,18 @@
-<div (click)="muudaAadress('Tulika tänav 12')">Kristiine</div>
+<!-- funktsiooni taaskasutus - kutsun ühte ja sama funktsiooni välja erineva parameetriga/argumendiga -->
+<!-- <div (click)="muudaAadress('Tulika tänav 12')">Kristiine</div>
 <div (click)="muudaAadress('Tammsaare tee 76')">Mustamäe</div>
-<div (click)="muudaAadress('Lennujaama tee 45')">Ülemiste</div>
+<div (click)="muudaAadress('Lennujaama tee 45')">Ülemiste</div> -->
+
+<!-- Stack Over Flow portaal
+üleval on küsimus vasakul on like'd
+allpool on vastused, vasakul on like'd -->
+<form (ngSubmit)="lisaPood(form)" #form="ngForm">
+  <label>Uue keskuse nimi</label>
+  <input ngModel name="pood" type="text">
+  <button>Lisa uus keskus</button>
+</form>
+
+<div *ngFor="let keskus of keskused">
+  <div (click)="muudaAadress(keskus + ' aadress')">{{ keskus }}<button (click)="kustutaPood(keskus)">X</button></div>
+</div>
 <div *ngIf="aadress !== ''">Selle poe aadress on: {{ aadress }}</div>
