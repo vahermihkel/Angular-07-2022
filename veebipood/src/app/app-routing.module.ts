@@ -5,6 +5,7 @@ import { KodulehtComponent } from './koduleht/koduleht.component';
 import { LisaToodeComponent } from './lisa-toode/lisa-toode.component';
 import { OstukorvComponent } from './ostukorv/ostukorv.component';
 import { PoedComponent } from './poed/poed.component';
+import { YksikToodeComponent } from './yksik-toode/yksik-toode.component';
 
 // localhost:4200
 // localhost:4200/    avaleht
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: "ostukorv", component: OstukorvComponent },
   { path: "poed", component: PoedComponent },
   { path: "lisa", component: LisaToodeComponent },
+  { path: "toode/:nimi", component: YksikToodeComponent },
 ];
 
 @NgModule({

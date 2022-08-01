@@ -18,7 +18,8 @@ export class LisaToodeComponent implements OnInit {
     if (tootedLS !== null) {
       tooted = JSON.parse(tootedLS);
     }
-    tooted.push(form.value.nimi);
+    // {nimi: "Tesla", hind: 123, aktiivsus: true}
+    tooted.push(form.value);
     localStorage.setItem("tooted", JSON.stringify(tooted));
   }
 

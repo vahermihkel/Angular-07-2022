@@ -1,0 +1,8 @@
+<div *ngIf="toode !== undefined">
+  <div>{{ toode.nimi }} </div>
+  <div>{{ toode.hind }} </div>
+  <div>{{ toode.aktiivsus }} </div>
+</div>
+<div *ngIf="toode === undefined">
+  TOODET EI LEITUD! (VÕI PANE MINGI PILT)
+</div>

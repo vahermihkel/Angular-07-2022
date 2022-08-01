@@ -1,4 +1,6 @@
 
 <div *ngFor="let toode of tooted">
-  {{toode}} <button (click)="lisaOstukorvi(toode)">Lisa ostukorvi</button>
+  <span routerLink="/toode/{{toode.nimi}}">{{toode.nimi}} </span>
+  <span routerLink="/toode/{{toode.nimi}}">({{toode.hind}} €) </span>
+  <button (click)="lisaOstukorvi(toode)">Lisa ostukorvi</button>
 </div>
