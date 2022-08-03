@@ -1,0 +1,20 @@
+<form (ngSubmit)="lisa(form)" #form="ngForm">
+  <label>Eesnimi</label> <br>
+  <input ngModel name="eesnimi" type="text"> <br>
+  <label>Perenimi</label> <br>
+  <input ngModel name="perenimi" type="text"> <br>
+  <label>Vanus</label> <br>
+  <input ngModel name="vanus" type="text"> <br>
+  <label>Email</label> <br>
+  <input ngModel name="email" type="text"> <br>
+  <button>Sisesta</button>
+</form>
+
+<div *ngFor="let inimene of inimesed">
+  <div (click)="email(inimene)">{{inimene.eesnimi}}</div>
+  <div (click)="email(inimene)">{{inimene.perenimi}}</div>
+  <div (click)="email(inimene)">{{inimene.vanus}}</div>
+  <button (click)="kustuta(inimene)">Kustuta</button>
+</div>
+
+<div *ngIf="klikitudEmail !== ''">Selle isiku email on: {{ klikitudEmail }}</div>

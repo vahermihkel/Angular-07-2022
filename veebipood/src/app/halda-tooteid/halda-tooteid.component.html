@@ -1,0 +1,8 @@
+
+<div *ngFor="let toode of tooted">
+  <div>{{ toode }}</div>
+  <div>{{ toode.nimi }}</div>
+  <div>{{ toode.hind }}</div>
+  <button (click)="kustuta(toode)">Kustuta</button>
+  <button>Muuda</button>
+</div>

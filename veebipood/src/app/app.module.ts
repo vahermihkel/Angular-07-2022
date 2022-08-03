@@ -10,6 +10,8 @@ import { PoedComponent } from './poed/poed.component';
 import { LisaToodeComponent } from './lisa-toode/lisa-toode.component';
 import { KodulehtComponent } from './koduleht/koduleht.component';
 import { YksikToodeComponent } from './yksik-toode/yksik-toode.component';
+import { HaldaTooteidComponent } from './halda-tooteid/halda-tooteid.component';
+import { MeistComponent } from './meist/meist.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { YksikToodeComponent } from './yksik-toode/yksik-toode.component';
     PoedComponent,
     LisaToodeComponent,
     KodulehtComponent,
-    YksikToodeComponent
+    YksikToodeComponent,
+    HaldaTooteidComponent,
+    MeistComponent
   ],
   imports: [
     BrowserModule,
