@@ -4,5 +4,8 @@
   <div>{{ toode.nimi }}</div>
   <div>{{ toode.hind }}</div>
   <button (click)="kustuta(toode)">Kustuta</button>
-  <button>Muuda</button>
+  <!-- localhost:4200/muuda/Coca%20Cola -->
+  <button routerLink="/muuda/{{toode.nimi}}">Muuda</button>
 </div>
+
+<!-- { path: "muuda/:nimi", component: MuudaToodeComponent }, -->

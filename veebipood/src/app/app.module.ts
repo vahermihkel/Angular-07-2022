@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +12,7 @@ import { KodulehtComponent } from './koduleht/koduleht.component';
 import { YksikToodeComponent } from './yksik-toode/yksik-toode.component';
 import { HaldaTooteidComponent } from './halda-tooteid/halda-tooteid.component';
 import { MeistComponent } from './meist/meist.component';
+import { MuudaToodeComponent } from './muuda-toode/muuda-toode.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +24,14 @@ import { MeistComponent } from './meist/meist.component';
     KodulehtComponent,
     YksikToodeComponent,
     HaldaTooteidComponent,
-    MeistComponent
+    MeistComponent,
+    MuudaToodeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

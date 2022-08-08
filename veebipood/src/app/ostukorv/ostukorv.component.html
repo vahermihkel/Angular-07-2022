@@ -9,5 +9,17 @@
 
 <div *ngIf="ostukorv.length > 0">{{ ostukorviSumma }}</div>
 
+<div *ngIf="ostukorv.length > 0">Keskmine toote hind: {{ ostukorviSumma / ostukorv.length }}</div>
+
+
+<!-- <div *ngFor="let toode of ostukorv">
+  <div *ngIf="toode.hind > 7 && toode.aktiivsus === true && ...">     || OR     && AND
+  <div *ngIf="toode.hind > 7 || toode.kampaania === true || ...">
+   <span>{{ toode.nimi }} </span>
+   <span>{{ toode.hind }}</span>
+   <button (click)="lisa(toode)">Lisa</button>
+   <button (click)="kustuta(toode)">Kustuta</button>
+  </div>
+</div> -->
 
 <!-- ctrl + d -->
