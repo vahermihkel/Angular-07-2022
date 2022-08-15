@@ -12,6 +12,9 @@ import { CategoryComponent } from './admin/category/category.component';
 import { SingleProductComponent } from './single-product/single-product.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { FormsModule } from '@angular/forms';
+import { ToastService, AngularToastifyModule } from 'angular-toastify';
+import { PageSettingsComponent } from './admin/page-settings/page-settings.component'; 
 
 @NgModule({
   declarations: [
@@ -24,13 +27,16 @@ import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
     CategoryComponent,
     SingleProductComponent,
     AboutUsComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    PageSettingsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    AngularToastifyModule,
   ],
-  providers: [],
+  providers: [ToastService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

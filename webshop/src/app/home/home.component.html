@@ -1,2 +1,10 @@
-<p>home works!</p>
-<div *ngFor="let product of products">{{ product }}</div>
+<div *ngFor="let product of products">
+  <div>{{ product.id }}</div>
+  <div>{{ product.name }}</div>
+  <img src="{{ product.image }}" alt="">
+  <div>{{ product.category }}</div>
+  <div>{{ product.price }} €</div>
+  <div>{{ product.description }}</div>
+  <div>{{ product.active }}</div>
+  <button (click)="addToCart(product)">Lisa ostukorvi</button>
+</div>

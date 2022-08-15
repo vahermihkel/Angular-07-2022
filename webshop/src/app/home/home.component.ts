@@ -19,4 +19,15 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addToCart(product: any) {
+    let cart = []; // <- kui on tühi siis siia
+    let cartSS = sessionStorage.getItem("cart");
+    if (cartSS !== null) {
+      cart = JSON.parse(cartSS); // <- kui ei ole tühi siis siia
+    }
+    cart.push(product); // <- lisab ühe juurde
+    sessionStorage.setItem("cart", JSON.stringify(cart));
+    // parem klõps -> inspect -> application -> session storage
+  }
+
 }

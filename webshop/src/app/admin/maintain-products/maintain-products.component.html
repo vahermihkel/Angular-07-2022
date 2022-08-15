@@ -1,1 +1,17 @@
-<p>maintain-products works!</p>
+<div *ngFor="let product of products">
+  <div>{{ product.id }}</div>
+  <div>{{ product.name }}</div>
+  <img src="{{ product.image }}" alt="">
+  <div>{{ product.category }}</div>
+  <div>{{ product.price }} €</div>
+  <div>{{ product.description }}</div>
+  <div>{{ product.active }}</div>
+  <button>Muuda</button>
+  <button (click)="deleteProduct(product)">Kustuta</button>
+</div>
+
+
+<lib-toastify-toast-container 
+  [position]="'bottom-right'"
+  [autoClose]="3000"
+></lib-toastify-toast-container>

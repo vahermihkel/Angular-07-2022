@@ -1,1 +1,5 @@
-<p>cart works!</p>
+<div *ngFor="let cartProduct of cartProducts">
+  <img src="{{ cartProduct.image }}" alt="">
+  <div>{{ cartProduct.name }}</div>
+  <div>{{ cartProduct.price }}</div>
+</div>

@@ -1,1 +1,17 @@
-<p>add-product works!</p>
+<form (ngSubmit)="addNewProduct(form)" #form="ngForm">
+  <label>Toote id</label> <br>
+  <input ngModel name="id" type="number"> <br>
+  <label>Toote nimi</label> <br>
+  <input ngModel name="name" type="text"> <br>
+  <label>Toote kategooria</label> <br>
+  <input ngModel name="category" type="text"> <br>
+  <label>Toote hind</label> <br>
+  <input ngModel name="price" type="number"> <br>
+  <label>Toote pilt</label> <br>
+  <input ngModel name="image" type="text"> <br>
+  <label>Toote kirjeldus</label> <br>
+  <input ngModel name="description" type="text"> <br>
+  <label>Toote aktiivsus</label> <br>
+  <input ngModel name="active" type="checkbox"> <br>
+  <button>Sisesta uus toode</button>
+</form>
