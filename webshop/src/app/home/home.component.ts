@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { ToastService } from 'angular-toastify';
 // ../ <--- kausta võrra ülespoole minek
 // ../ home kaustast välja
 // ../../ app kaustast välja
@@ -14,7 +16,8 @@ import productsData from '../../assets/products.json';
 export class HomeComponent implements OnInit {
   products = productsData;
 
-  constructor() { }
+  constructor(private _toastService: ToastService,
+    private translateService: TranslateService) { }
 
   ngOnInit(): void {
   }
@@ -28,6 +31,7 @@ export class HomeComponent implements OnInit {
     cart.push(product); // <- lisab ühe juurde
     sessionStorage.setItem("cart", JSON.stringify(cart));
     // parem klõps -> inspect -> application -> session storage
+    this._toastService.success(this.translateService.instant("toast.added-to-cart"));
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-page-settings',
@@ -7,10 +7,19 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./page-settings.component.css']
 })
 export class PageSettingsComponent implements OnInit {
+  contactSettingsForm: any;
 
   constructor() { }
 
   ngOnInit(): void {
+    let contact = {telephone: "", address: ""};
+    const contactLS = localStorage.getItem("contact");
+    if (contactLS !== null) {
+      contact = JSON.parse(contactLS);
+    }
+    this.contactSettingsForm = new FormGroup(
+      {telephone: new FormControl(contact.telephone), address: new FormControl(contact.address)}
+      )
   }
 
   addSettings(form: NgForm) {

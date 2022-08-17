@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastService } from 'angular-toastify';
 import productsData from 'src/assets/products.json';
 // import productsData from '../../../assets/products.json';
@@ -12,7 +13,8 @@ export class MaintainProductsComponent implements OnInit {
   products = productsData; //HTML jaoks
   // private products; <- kasutan kahes või enamas funktsioonis
 
-  constructor(private _toastService: ToastService) { }
+  constructor(private _toastService: ToastService,
+    private translateService: TranslateService) { }
 
   ngOnInit(): void {
   }
@@ -22,7 +24,7 @@ export class MaintainProductsComponent implements OnInit {
     productsData.splice(index,1);
     // annab sõnumi, et kustutati
     //https://www.npmjs.com/package/angular-toastify
-    this._toastService.success('Edukalt kustutatud');
+    this._toastService.success(this.translateService.instant('toast.deleted'));
   }
 
 }

@@ -1,0 +1,27 @@
+{
+  "navbar": {
+      "admin": "To admin view",
+      "about": "About us",
+      "cart": "Cart"
+  },
+  "home": {
+      "add-cart-button": "Add to cart"
+  },
+  "admin-home": {
+      "add-product": "Add product",
+      "maintain-products": "Maintain products",
+      "maintain-categories": "Maintain categories",
+      "page-settings": "Maintain page settings"
+  },
+  "page-settings": {
+      "phonenumber": "Phone number",
+      "address": "Address"
+  },
+  "buttons": {
+      "add": "Add"
+  },
+  "toast": {
+    "deleted": "Successfully deleted",
+    "added-to-cart": "Successfully product added to cart"
+  }
+}

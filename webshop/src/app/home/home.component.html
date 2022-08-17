@@ -6,5 +6,10 @@
   <div>{{ product.price }} €</div>
   <div>{{ product.description }}</div>
   <div>{{ product.active }}</div>
-  <button (click)="addToCart(product)">Lisa ostukorvi</button>
+  <button (click)="addToCart(product)">{{"home.add-cart-button" | translate}}</button>
 </div>
+
+<lib-toastify-toast-container 
+  [position]="'bottom-right'"
+  [autoClose]="3000"
+></lib-toastify-toast-container>

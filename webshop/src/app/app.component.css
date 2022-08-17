@@ -1,0 +1,11 @@
+.lang {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.lang:hover {
+  /* näitab 70% */
+  opacity: 0.7; 
+}
