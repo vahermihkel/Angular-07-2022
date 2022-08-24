@@ -11,10 +11,15 @@ export class NimedComponent implements OnInit {
   j2rjekorranumber: any;
   leitud: any;
   summa: any = 0;  // NaN  ---> Not a Number kui pole algväärtust
+  otsitavNimi = "";
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  otsi() {
+    this.nimed = nimedFailist.filter(element => element.includes(this.otsitavNimi));
   }
 
   arvutaSumma() {

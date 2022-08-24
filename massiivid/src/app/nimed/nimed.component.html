@@ -1,3 +1,8 @@
+  <!-- ngModel asja saab teha ainult input sisse
+  paremal pool peab olema muutuja .ts failist
+tuleb importida FormsModule selle kasutamise jaoks -->
+<input (change)="otsi()" placeholder="Otsi" [(ngModel)]="otsitavNimi" type="text">
+
 <button (click)="shiftFunktsioon()">Kustuta algusest 1 ära</button>
 <button (click)="unshiftFunktsioon()">Lisa algusesse 1 juurde</button>
 <button (click)="spliceFunktsioon()">Kustuta alates 5-ndast kõik ära</button>

@@ -1,5 +1,18 @@
+<input (change)="otsi()" placeholder="Otsi" [(ngModel)]="otsitavNimi" type="text">
+
 <button (click)="filtreeri()">Filtreeri</button>
 <button (click)="sorteeri()">Sorteeri</button>
+
+<br><br>
+
+<button 
+  [class.bold]="viimatiklikitudTelNumAlgus === algus"
+  *ngFor="let algus of telefoniNumbriAlgus" 
+  (click)="filtreeriTelAlgus(algus)">
+  {{ algus }}
+</button>
+
+<br><br>
 
 <div *ngFor="let user of users">
   <div>{{user.id}}</div>
@@ -19,4 +32,5 @@
   <div>{{user.company.bs}}</div>
   <button>x</button>
   <button>index</button>
+  <button routerLink="/user/{{user.id}}">Detailselt</button>
 </div>
