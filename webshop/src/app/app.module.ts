@@ -18,7 +18,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastService, AngularToastifyModule } from 'angular-toastify';
-import { PageSettingsComponent } from './admin/page-settings/page-settings.component'; 
+import { PageSettingsComponent } from './admin/page-settings/page-settings.component';
+import { MapComponent } from './map/map.component'; 
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { PageSettingsComponent } from './admin/page-settings/page-settings.compo
     SingleProductComponent,
     AboutUsComponent,
     AdminHomeComponent,
-    PageSettingsComponent
+    PageSettingsComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,

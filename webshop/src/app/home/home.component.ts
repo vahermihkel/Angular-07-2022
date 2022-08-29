@@ -15,11 +15,40 @@ import productsData from '../../assets/products.json';
 })
 export class HomeComponent implements OnInit {
   products = productsData;
+  // [1,1,2]     <- .map    [{name: "", category: 1}, {name: "", category: 1}, {name: "", category: 2}]
+  // new Set()    -->    [1,2]
+  categories = [... new Set(productsData.map(element => element.category))];
+  activeCategory = "";
 
   constructor(private _toastService: ToastService,
     private translateService: TranslateService) { }
 
   ngOnInit(): void {
+  }
+
+  filterByCategory(category: any) {
+    if (category === '') {
+      this.products = productsData;
+    } else {
+      this.products = productsData.filter(element => element.category === category);
+    }
+    this.activeCategory = category;
+  }
+
+  sortAZ() {
+    this.products.sort((a,b) => a.name.localeCompare(b.name));
+  }
+
+  sortZA() {
+    this.products.sort((a,b) => b.name.localeCompare(a.name));
+  }
+
+  sortPriceAsc() {
+    this.products.sort((a,b) => a.price - b.price);
+  }
+
+  sortPriceDesc() {
+    this.products.sort((a,b) => b.price - a.price);
   }
 
   addToCart(product: any) {
