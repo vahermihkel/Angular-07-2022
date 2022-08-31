@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastService } from 'angular-toastify';
@@ -6,7 +7,7 @@ import { ToastService } from 'angular-toastify';
 // ../../ app kaustast välja
 // ../../assets assets kausta
 // ../../assets/products.json võtab siit kaustast selle faili
-import productsData from '../../assets/products.json';
+// import productsData from '../../assets/products.json';
 
 @Component({
   selector: 'app-home',
@@ -14,23 +15,32 @@ import productsData from '../../assets/products.json';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  products = productsData;
+  products: any[] = []; // <----- väljanäidatav lehel, muudan koguaeg
+  // filtreerin/sorteerin
+  originalProducts: any[] = []; // <--- ei muuda kunagi, ainult loen väärtust
+  // products = productsData;
   // [1,1,2]     <- .map    [{name: "", category: 1}, {name: "", category: 1}, {name: "", category: 2}]
   // new Set()    -->    [1,2]
-  categories = [... new Set(productsData.map(element => element.category))];
+  categories: any[] = [];
   activeCategory = "";
 
   constructor(private _toastService: ToastService,
-    private translateService: TranslateService) { }
+    private translateService: TranslateService,
+    private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.http.get<any[]>("https://angular-08-22-default-rtdb.europe-west1.firebasedatabase.app/products.json").subscribe(productsFromDb => {
+      this.products = productsFromDb;
+      this.originalProducts = productsFromDb;
+      this.categories = [... new Set(this.originalProducts.map(element => element.category))];
+    });
   }
 
   filterByCategory(category: any) {
     if (category === '') {
-      this.products = productsData;
+      this.products = this.originalProducts;
     } else {
-      this.products = productsData.filter(element => element.category === category);
+      this.products = this.originalProducts.filter(element => element.category === category);
     }
     this.activeCategory = category;
   }
@@ -64,3 +74,17 @@ export class HomeComponent implements OnInit {
   }
 
 }
+
+// Andmebaasiühendused
+// Kategooriate lisamise
+// Toodete muutmise
+
+// Nortali proovitöö: saate harjutada proovitöö järgi
+// 14.09 <- Töötukassas ametlikult
+// 19.09 <- meie viimane päev
+
+
+// Lõpuprojekt - iseseisvalt mingisuguse projekti:
+// 1. Webshopi edasiarendus
+// 2. Youtube-i / Udemy järgi mingisugune projekt
+// 3. Täitsa nullist enda välja mõeldud (portfoolio, enda veebileht)

@@ -1,7 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import productsData from 'src/assets/products.json';
+// import productsData from 'src/assets/products.json';
 
 @Component({
   selector: 'app-add-product',
@@ -9,15 +10,21 @@ import productsData from 'src/assets/products.json';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
+  private products: any[] = [];
+  private url = "https://angular-08-22-default-rtdb.europe-west1.firebasedatabase.app/products.json";
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.http.get<any[]>(this.url).subscribe(productsFromDb => 
+      this.products = productsFromDb
+    );
   }
 
   addNewProduct(form: NgForm) {
-    productsData.push(form.value);
-    this.router.navigateByUrl("/admin/halda-tooteid");
+    this.products.push(form.value);
+    this.http.put(this.url, this.products).subscribe(() => this.router.navigateByUrl("/admin/halda-tooteid"));
   }
 
 }
