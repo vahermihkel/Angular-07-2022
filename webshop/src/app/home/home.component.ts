@@ -61,13 +61,22 @@ export class HomeComponent implements OnInit {
     this.products.sort((a,b) => b.price - a.price);
   }
 
+  //     {product: {id: 12312, name: "dasd", price: 312}, quantity: 1}
   addToCart(product: any) {
     let cart = []; // <- kui on tühi siis siia
     let cartSS = sessionStorage.getItem("cart");
     if (cartSS !== null) {
       cart = JSON.parse(cartSS); // <- kui ei ole tühi siis siia
     }
-    cart.push(product); // <- lisab ühe juurde
+    // järjekorranumber näitab, kas on olemas või mitte 0,1,2,3,4,5,6,7,8      -1
+    const index = cart.findIndex((element: any) => element.product.id === product.id);
+    if (index >= 0) {
+        // kui on olemas, siis suurenda kogust
+        cart[index].quantity = cart[index].quantity + 1; 
+    } else {
+        // kui ei ole olemas, siis lisa juurde (push)
+        cart.push({product: product, quantity: 1}); // <- lisab ühe juurde
+    }
     sessionStorage.setItem("cart", JSON.stringify(cart));
     // parem klõps -> inspect -> application -> session storage
     this._toastService.success(this.translateService.instant("toast.added-to-cart"));

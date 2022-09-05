@@ -1,5 +1,15 @@
+<!-- enne: {id: 12312, name: "dasd", price: 312}
+nüüd: {product: {id: 12312, name: "dasd", price: 312}, quantity: 1} -->
+
 <div *ngFor="let cartProduct of cartProducts">
-  <img src="{{ cartProduct.image }}" alt="">
-  <div>{{ cartProduct.name }}</div>
-  <div>{{ cartProduct.price }}</div>
+  <img src="{{ cartProduct.product.image }}" alt="">
+  <div>{{ cartProduct.product.name }}</div>
+  <div>{{ cartProduct.product.price }} €</div>
+  <button (click)="decreaseQuantity(cartProduct)">-</button>
+  <div>{{ cartProduct.quantity }} tk</div>
+  <button (click)="increaseQuantity(cartProduct)">+</button>
+  <div>{{ (cartProduct.product.price * cartProduct.quantity).toFixed(2) }} €</div>
+  <button (click)="removeFromCart(cartProduct)">x</button>
 </div>
+
+<div>Kokku: {{ cartSum.toFixed(2) }} €</div>

@@ -1,1 +1,17 @@
-<p>edit-product works!</p>
+<form *ngIf="product" (ngSubmit)="onSubmit()" [formGroup]="productEditForm">
+  <label>Id</label> <br>
+  <input formControlName="id" type="number"> <br>
+  <label>Nimi</label> <br>
+  <input formControlName="name" type="text"> <br>
+  <label>Hind</label> <br>
+  <input formControlName="price" type="text"> <br>
+  <label>Kategooria</label> <br>
+  <input formControlName="category" type="text"> <br>
+  <label>Pilt</label> <br>
+  <input formControlName="image" type="text"> <br>
+  <label>Kirjeldus</label> <br>
+  <input formControlName="description" type="text"> <br>
+  <label>Aktiivsus</label> <br>
+  <input formControlName="active" type="text"> <br>
+  <button>Muuda</button>
+</form>

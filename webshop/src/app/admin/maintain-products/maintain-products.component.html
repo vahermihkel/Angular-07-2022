@@ -6,7 +6,7 @@
   <div>{{ product.price }} €</div>
   <div>{{ product.description }}</div>
   <div>{{ product.active }}</div>
-  <button>Muuda</button>
+  <button routerLink="/admin/muuda-toode/{{product.id}}">Muuda</button>
   <button (click)="deleteProduct(product)">Kustuta</button>
 </div>
 
