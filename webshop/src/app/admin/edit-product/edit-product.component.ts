@@ -13,11 +13,19 @@ export class EditProductComponent implements OnInit {
   products: any[] = [];
   productEditForm: any;
   index: any;
+  private catUrl = "https://angular-08-22-default-rtdb.europe-west1.firebasedatabase.app/categories.json";
+  categories: any[] = [];
 
   constructor(private route: ActivatedRoute,
     private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.http.get<any[]>(this.catUrl).subscribe(categoriesFromDb => {
+      if (categoriesFromDb !== null) {
+        this.categories = categoriesFromDb;
+      }
+    });
+
     const productId = this.route.snapshot.paramMap.get("id"); // alati URL-st võttes tuleb jutumärkidega väärtus
     this.http.get<any[]>("https://angular-08-22-default-rtdb.europe-west1.firebasedatabase.app/products.json").subscribe(productsFromDb => {
       this.products = productsFromDb;          //    3123123        "3123123"
@@ -33,7 +41,6 @@ export class EditProductComponent implements OnInit {
         active: new FormControl(this.product.active),
       })
     });
-
   }
 
   onSubmit() {

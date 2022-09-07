@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,14 +9,19 @@ import { Component, OnInit } from '@angular/core';
 export class CartComponent implements OnInit {
   cartProducts: any[] = []; // <- kui on tühi, siis näitab HTML-s seda
   cartSum = 0;
+  parcelMachines: any[] = [];
+  selectedParcelMachine: any;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     let cartSS = sessionStorage.getItem("cart");
     if (cartSS !== null) {
       this.cartProducts = JSON.parse(cartSS); // kui ei ole tühi, siis näitab HTML-s
     }
+
+    this.http.get<any[]>("https://www.omniva.ee/locations.json").subscribe(pm => 
+        this.parcelMachines = pm.filter(e => e.A0_NAME === "EE"));
 
     this.cartProducts.forEach(element => this.cartSum = this.cartSum + element.product.price * element.quantity);
   }
@@ -47,6 +53,21 @@ export class CartComponent implements OnInit {
     sessionStorage.setItem("cart", JSON.stringify(this.cartProducts));
     this.cartSum = 0;
     this.cartProducts.forEach(element => this.cartSum = this.cartSum + element.product.price * element.quantity);
+  }
+
+  showParcelMachineEE() {
+    this.http.get<any[]>("https://www.omniva.ee/locations.json").subscribe(pm => 
+        this.parcelMachines = pm.filter(e => e.A0_NAME === "EE"));
+  }
+
+  showParcelMachineLV() {
+    this.http.get<any[]>("https://www.omniva.ee/locations.json").subscribe(pm => 
+        this.parcelMachines = pm.filter(e => e.A0_NAME === "LV"));
+  }
+
+  showParcelMachineLT() {
+    this.http.get<any[]>("https://www.omniva.ee/locations.json").subscribe(pm => 
+        this.parcelMachines = pm.filter(e => e.A0_NAME === "LT"));
   }
 
 }

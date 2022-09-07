@@ -12,14 +12,23 @@ import { Router } from '@angular/router';
 export class AddProductComponent implements OnInit {
   private products: any[] = [];
   private url = "https://angular-08-22-default-rtdb.europe-west1.firebasedatabase.app/products.json";
+  private catUrl = "https://angular-08-22-default-rtdb.europe-west1.firebasedatabase.app/categories.json";
+  categories: any[] = [];
 
   constructor(private router: Router,
     private http: HttpClient) { }
 
+    // kontroll kui on null
   ngOnInit(): void {
     this.http.get<any[]>(this.url).subscribe(productsFromDb => 
       this.products = productsFromDb
     );
+
+    this.http.get<any[]>(this.catUrl).subscribe(categoriesFromDb => {
+      if (categoriesFromDb !== null) {
+        this.categories = categoriesFromDb;
+      }
+    });
   }
 
   addNewProduct(form: NgForm) {

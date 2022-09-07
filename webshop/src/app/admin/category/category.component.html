@@ -1,1 +1,9 @@
-<p>category works!</p>
+<form (ngSubmit)="onSubmit(form)" #form="ngForm">
+  <label>Kategooria nimi</label> <br>
+  <input ngModel name="name" type="text"> <br>
+  <button>Sisesta</button> <br>
+</form>
+
+<div *ngFor="let category of categories">
+  {{ category.name }} <button (click)="onDelete(category)">X</button>
+</div>

@@ -1,6 +1,12 @@
 <!-- enne: {id: 12312, name: "dasd", price: 312}
 nüüd: {product: {id: 12312, name: "dasd", price: 312}, quantity: 1} -->
 
+<button>TÜHJENDA -- KODUS</button>
+
+<div>KUI OSTUKORV ON TÜHI; SIIS NÄITE MINGIT PILTI</div>
+
+<div>OSTUKORVIS OLEVATE ESEMETE ARVU</div>
+
 <div *ngFor="let cartProduct of cartProducts">
   <img src="{{ cartProduct.product.image }}" alt="">
   <div>{{ cartProduct.product.name }}</div>
@@ -13,3 +19,16 @@ nüüd: {product: {id: 12312, name: "dasd", price: 312}, quantity: 1} -->
 </div>
 
 <div>Kokku: {{ cartSum.toFixed(2) }} €</div>
+
+
+<button (click)="showParcelMachineEE()">EE</button>
+<button (click)="showParcelMachineLV()">LV</button>
+<button (click)="showParcelMachineLT()">LT</button>
+<!-- <div>{{ parcelMachines }}</div> -->
+<select [(ngModel)]="selectedParcelMachine" name="" id="">
+  <option *ngFor="let parcelMachine of parcelMachines">
+    {{ parcelMachine.NAME }}
+  </option>
+</select>
+
+<div>Valitud pakiautomaat: {{ selectedParcelMachine }} </div>
