@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CategoryService } from 'src/app/services/category.service';
+import { ProductService } from 'src/app/services/product.service';
 // import productsData from 'src/assets/products.json';
 
 @Component({
@@ -11,20 +12,22 @@ import { Router } from '@angular/router';
 })
 export class AddProductComponent implements OnInit {
   private products: any[] = [];
-  private url = "https://angular-08-22-default-rtdb.europe-west1.firebasedatabase.app/products.json";
-  private catUrl = "https://angular-08-22-default-rtdb.europe-west1.firebasedatabase.app/categories.json";
   categories: any[] = [];
 
   constructor(private router: Router,
-    private http: HttpClient) { }
+    private productService: ProductService,
+    private categoryService: CategoryService) { }
 
     // kontroll kui on null
   ngOnInit(): void {
-    this.http.get<any[]>(this.url).subscribe(productsFromDb => 
-      this.products = productsFromDb
-    );
+    // this.http.get<any[]>(this.url).subscribe(productsFromDb => 
+    //   this.products = productsFromDb
+    // );
+    this.productService.getProducts().subscribe(productsFromDb =>
+       this.products = productsFromDb
+       );
 
-    this.http.get<any[]>(this.catUrl).subscribe(categoriesFromDb => {
+    this.categoryService.getCategories().subscribe(categoriesFromDb => {
       if (categoriesFromDb !== null) {
         this.categories = categoriesFromDb;
       }
@@ -33,7 +36,10 @@ export class AddProductComponent implements OnInit {
 
   addNewProduct(form: NgForm) {
     this.products.push(form.value);
-    this.http.put(this.url, this.products).subscribe(() => this.router.navigateByUrl("/admin/halda-tooteid"));
+    // this.http.put(this.url, this.products).subscribe(() => this.router.navigateByUrl("/admin/halda-tooteid"));
+    this.productService.addProducts(this.products).subscribe( 
+      () => this.router.navigateByUrl("/admin/halda-tooteid")
+    );
   }
 
 }

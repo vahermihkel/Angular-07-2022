@@ -1,10 +1,20 @@
-<div 
+<!-- <div 
   [class.active-category]="activeCategory === ''"
   (click)="filterByCategory('')">Kõik kategooriad</div>
 <div 
   *ngFor="let category of categories" 
   (click)="filterByCategory(category)"
   [class.active-category]="category === activeCategory">
+    {{ category }}
+</div> -->
+
+<div 
+  [ngClass]="{'active-category': activeCategory === ''}"
+  (click)="filterByCategory('')">Kõik kategooriad</div>
+<div 
+  *ngFor="let category of categories" 
+  (click)="filterByCategory(category)"
+  [ngClass]="{'active-category': activeCategory === activeCategory}">
     {{ category }}
 </div>
 

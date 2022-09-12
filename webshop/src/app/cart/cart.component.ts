@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Component, OnInit } from '@angular/core';
+import { ParcelMachineService } from './parcel-machine.service';
 
 @Component({
   selector: 'app-cart',
@@ -12,7 +13,7 @@ export class CartComponent implements OnInit {
   parcelMachines: any[] = [];
   selectedParcelMachine: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private parcelMachineService: ParcelMachineService) { }
 
   ngOnInit(): void {
     let cartSS = sessionStorage.getItem("cart");
@@ -20,7 +21,7 @@ export class CartComponent implements OnInit {
       this.cartProducts = JSON.parse(cartSS); // kui ei ole tühi, siis näitab HTML-s
     }
 
-    this.http.get<any[]>("https://www.omniva.ee/locations.json").subscribe(pm => 
+    this.parcelMachineService.getParcelMachines().subscribe(pm => 
         this.parcelMachines = pm.filter(e => e.A0_NAME === "EE"));
 
     this.cartProducts.forEach(element => this.cartSum = this.cartSum + element.product.price * element.quantity);
@@ -56,17 +57,17 @@ export class CartComponent implements OnInit {
   }
 
   showParcelMachineEE() {
-    this.http.get<any[]>("https://www.omniva.ee/locations.json").subscribe(pm => 
+    this.parcelMachineService.getParcelMachines().subscribe(pm => 
         this.parcelMachines = pm.filter(e => e.A0_NAME === "EE"));
   }
 
   showParcelMachineLV() {
-    this.http.get<any[]>("https://www.omniva.ee/locations.json").subscribe(pm => 
+    this.parcelMachineService.getParcelMachines().subscribe(pm => 
         this.parcelMachines = pm.filter(e => e.A0_NAME === "LV"));
   }
 
   showParcelMachineLT() {
-    this.http.get<any[]>("https://www.omniva.ee/locations.json").subscribe(pm => 
+    this.parcelMachineService.getParcelMachines().subscribe(pm => 
         this.parcelMachines = pm.filter(e => e.A0_NAME === "LT"));
   }
 

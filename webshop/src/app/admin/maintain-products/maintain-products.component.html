@@ -1,4 +1,8 @@
-<div *ngFor="let product of products">
+<!-- <div *ngFor="let product of products" 
+  [ngClass]="{'active': product.active === true, 'inactive': product.active === false}"> -->
+  <div *ngFor="let product of products" 
+  [class.active]="product.active === true"
+  [class.inactive]="product.active === false">
   <div>{{ product.id }}</div>
   <div>{{ product.name }}</div>
   <img src="{{ product.image }}" alt="">

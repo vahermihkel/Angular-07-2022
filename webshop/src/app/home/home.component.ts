@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastService } from 'angular-toastify';
+import { ProductService } from '../services/product.service';
 // ../ <--- kausta võrra ülespoole minek
 // ../ home kaustast välja
 // ../../ app kaustast välja
@@ -26,10 +26,10 @@ export class HomeComponent implements OnInit {
 
   constructor(private _toastService: ToastService,
     private translateService: TranslateService,
-    private http: HttpClient) { }
+    private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.http.get<any[]>("https://angular-08-22-default-rtdb.europe-west1.firebasedatabase.app/products.json").subscribe(productsFromDb => {
+    this.productService.getProducts().subscribe(productsFromDb => {
       this.products = productsFromDb;
       this.originalProducts = productsFromDb;
       this.categories = [... new Set(this.originalProducts.map(element => element.category))];

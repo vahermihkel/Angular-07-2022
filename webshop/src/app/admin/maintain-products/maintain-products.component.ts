@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastService } from 'angular-toastify';
+import { ProductService } from 'src/app/services/product.service';
 // import productsData from 'src/assets/products.json';
 // import productsData from '../../../assets/products.json';
 
@@ -16,12 +16,10 @@ export class MaintainProductsComponent implements OnInit {
 
   constructor(private _toastService: ToastService,
     private translateService: TranslateService,
-    private http: HttpClient) { }
+    private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.http.get<any[]>("https://angular-08-22-default-rtdb.europe-west1.firebasedatabase.app/products.json").subscribe(productsFromDb => 
-      this.products = productsFromDb
-    );
+    this.productService.getProducts().subscribe(productsFromDb => this.products = productsFromDb);
   }
 
   deleteProduct(product: any) {
@@ -31,8 +29,8 @@ export class MaintainProductsComponent implements OnInit {
     //https://www.npmjs.com/package/angular-toastify
     this._toastService.success(this.translateService.instant('toast.deleted'));
 
-    this.http.put("https://angular-08-22-default-rtdb.europe-west1.firebasedatabase.app/products.json", this.products).subscribe();
-
+    this.productService.addProducts(this.products).subscribe();
+      // andmebaasi lisamine
   }
 
 }

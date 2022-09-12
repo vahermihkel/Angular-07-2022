@@ -6,3 +6,9 @@
 <button routerLink="/admin/kategooria">{{"admin-home.maintain-categories" | translate}}</button>
 <button routerLink="/admin/lehe-seaded">{{"admin-home.page-settings" | translate}}</button>
 <!-- localhost:4200/admin/kategooria -->
+
+                      <!--   [{},{}] -->
+<div *ngFor="let product of products">
+  {{product.name}}
+  <br><br>
+</div>

@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-category',
@@ -8,12 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryComponent implements OnInit {
   categories: any[] = [];
-  url = "https://angular-08-22-default-rtdb.europe-west1.firebasedatabase.app/categories.json";
 
-  constructor(private http: HttpClient) { }
+  constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
-    this.http.get<any[]>(this.url).subscribe(categoriesFromDb => {
+    this.categoryService.getCategories().subscribe(categoriesFromDb => {
       if (categoriesFromDb !== null) {
         this.categories = categoriesFromDb;
       }
@@ -22,13 +21,13 @@ export class CategoryComponent implements OnInit {
 
   onSubmit(form: any) {
     this.categories.push(form.value);
-    this.http.put(this.url, this.categories).subscribe();
+    this.categoryService.addCategories(this.categories).subscribe();
   }
 
   onDelete(category: any) {
     const index = this.categories.indexOf(category);
     this.categories.splice(index,1);
-    this.http.put(this.url, this.categories).subscribe();
+    this.categoryService.addCategories(this.categories).subscribe();
   } 
 
 }
